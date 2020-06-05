@@ -5,6 +5,7 @@ use web_sys::WebGl2RenderingContext;
 use std::cell::RefCell;
 use std::rc::Rc;
 use crate::frame_input::*;
+use log::info;
 
 #[derive(Debug)]
 pub enum Error {
