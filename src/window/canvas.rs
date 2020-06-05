@@ -233,7 +233,7 @@ impl Window
                 event.prevent_default();
             }
         }) as Box<dyn FnMut(_)>);
-        window().add_event_listener_with_callback("keydown", closure.as_ref().unchecked_ref()).map_err(|e| Error::EventListenerError {message: format!("Unable to add key down event listener. Error code: {:?}", e)})?;
+        self.canvas.add_event_listener_with_callback("keydown", closure.as_ref().unchecked_ref()).map_err(|e| Error::EventListenerError {message: format!("Unable to add key down event listener. Error code: {:?}", e)})?;
         closure.forget();
         Ok(())
     }
@@ -246,7 +246,7 @@ impl Window
                 event.prevent_default();
             }
         }) as Box<dyn FnMut(_)>);
-        window().add_event_listener_with_callback("keyup", closure.as_ref().unchecked_ref()).map_err(|e| Error::EventListenerError {message: format!("Unable to add key up event listener. Error code: {:?}", e)})?;
+        self.canvas.add_event_listener_with_callback("keyup", closure.as_ref().unchecked_ref()).map_err(|e| Error::EventListenerError {message: format!("Unable to add key up event listener. Error code: {:?}", e)})?;
         closure.forget();
         Ok(())
     }
