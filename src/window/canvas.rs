@@ -30,6 +30,9 @@ impl Window
 
     pub fn new(_title: &str, _width: u32, _height: u32) -> Result<Window, Error>
     {
+
+        info!("this is codec-abc version running");
+
         let window = web_sys::window().ok_or(Error::WindowCreationError {message: "Unable to create web window".to_string()})?;
         let document = window.document().ok_or(Error::WindowCreationError {message: "Unable to get document".to_string()})?;
         let canvas = document.get_element_by_id("canvas").ok_or(Error::WindowCreationError {message: "Unable to get canvas, is the id different from 'canvas'?".to_string()})?;
