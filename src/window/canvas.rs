@@ -29,6 +29,22 @@ impl Window
         Window::new(title, 512, 512)
     }
 
+    pub fn fix_canvas_size(&self) {
+        let canvas = &self.canvas;
+        let display_width  = canvas.client_width();
+        let display_height = canvas.client_height();
+    
+        // Check if the canvas is not the same size.
+        if
+            canvas.width() as i32 != display_width ||
+            canvas.height() as i32 != display_height {
+    
+          // Make the canvas the same size
+          canvas.set_width(display_width as u32);
+          canvas.set_height(display_height as u32);
+        }
+    }
+
     pub fn new(_title: &str, _width: u32, _height: u32) -> Result<Window, Error>
     {
 
@@ -74,6 +90,8 @@ impl Window
         self.add_key_down_event_listener(events.clone())?;
         self.add_key_up_event_listener(events.clone())?;
 
+        //let canvas = &self.canvas;
+
         *g.borrow_mut() = Some(Closure::wrap(Box::new(move || {
             let now = performance.now();
             let elapsed_time = now - last_time;
@@ -81,6 +99,12 @@ impl Window
             let (screen_width, screen_height) = (window().inner_width().unwrap().as_f64().unwrap() as usize,
                         window().inner_height().unwrap().as_f64().unwrap() as usize);
             let frame_input = crate::FrameInput {events: (*events).borrow().clone(), elapsed_time, screen_width, screen_height};
+
+            //TODO : fix canvas size?
+            // use https://webglfundamentals.org/webgl/lessons/webgl-resizing-the-canvas.html
+
+
+
             callback(frame_input);
             &(*events).borrow_mut().clear();
 

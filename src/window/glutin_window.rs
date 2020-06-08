@@ -35,6 +35,9 @@ impl Window
         Window::new(title, 1024, 512)
     }
 
+    pub fn fix_canvas_size(&self) {
+    }
+
     pub fn new(title: &str, width: u32, height: u32) -> Result<Window, Error>
     {
         let window = WindowBuilder::new()
