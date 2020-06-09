@@ -29,22 +29,6 @@ impl Window
         Window::new(title, 512, 512)
     }
 
-    pub fn fix_canvas_size(&self) {
-        let canvas = &self.canvas;
-        let display_width  = canvas.client_width();
-        let display_height = canvas.client_height();
-    
-        // Check if the canvas is not the same size.
-        if
-            canvas.width() as i32 != display_width ||
-            canvas.height() as i32 != display_height {
-    
-          // Make the canvas the same size
-          canvas.set_width(display_width as u32);
-          canvas.set_height(display_height as u32);
-        }
-    }
-
     pub fn new(_title: &str, _width: u32, _height: u32) -> Result<Window, Error>
     {
 
