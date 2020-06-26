@@ -3,6 +3,7 @@ pub mod gl;
 
 pub mod core;
 pub use crate::core::*;
+pub extern crate cgmath;
 
 #[cfg(not(feature = "no-renderer"))]
 pub mod renderer;
